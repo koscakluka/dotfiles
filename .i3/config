@@ -1,0 +1,211 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+
+#TO DO:
+## add system mode for lock, shutdown, exit, restart, reset, etc.
+## add automatic startup script
+
+#i3 Variables
+##Super key as Mod
+set $mod Mod4
+
+##Workspace names
+set $ws1 "1: general"
+set $ws2 "2: file manager"
+set $ws3 "3: IDE"
+set $ws4 "4: web"
+set $ws5 "5: music"
+
+##Terminal
+set $terminal "termit"
+
+##Locker
+set $locker i3lock -d -n -i ~/Pictures/wallpaper.png -t && sleep 1
+
+##Colors
+set $red   #CC0000
+set $gold  #ECA630
+set $black #000000
+set $white #FFFFFF
+
+#DejaVu font for now
+font pango:DejaVu Sans Mono 10
+
+#Controles
+##Volume
+bindsym XF86AudioRaiseVolume exec amixer -c 1 set Master playback 2%+
+bindsym XF86AudioLowerVolume exec amixer -c 1 set Master playback 2%-
+bindsym XF86AudioMute 	     exec amixer -c 1 -D pulse set Master 1+ toggle
+
+##Brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 3
+bindsym XF86MonBrightnessUp exec xbacklight -inc 3
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec $terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show run -terminal termite -lines 4 -eh 2 -fullscreen -padding 350 -bw 0 -bc "#dddddd" -bg "argb:9e111111" -hlbg "#aaaab0" -hlfg "#111111" -fg "#aaaab0" -font "DejaVu Sans Monospace 18" -fake-transparency
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split keybindings
+bindsym $mod+Control+h split h
+bindsym $mod+Control+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+##Modes
+bindsym $mod+Control+s mode "system"
+bindsym $mod+Control+r mode "resize"
+
+#i3 modes
+##Resize mode
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+##System mode - shutdown, logout, restart, restart i3, lock
+mode "system" {
+	bindsym l exec --no-startup-id $Locker, mode "default"
+	bindsym r restart, mode "default"
+	bindsym c reload, mode "default"
+	bindsym e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'", mode "default"
+	bindsym p exec "i3-nagbar -t warning -m 'Power down?' -b 'Yes' 'sudo shutdown -h now'", mode "default"
+	
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+	
+}
+
+
+#i3bar configuration
+bar {
+	position top
+        status_command i3status
+	colors {
+		background $black
+		statusline $gold
+		separator $gold
+		focused_workspace $gold $gold $black
+		active_workspace $gold $gold $black
+		inactive_workspace $black $black $gold
+		urgent_workspace $gold $red $white
+	}
+}
+
+#Window styling
+for_window [class="^.*"] border pixel 3
+
+client.focused $gold $gold $white $red
+client.focused_inactive $black $black $white $black
+client.unfocused $black $black $white $black
+client.urgent $red $black $white $gold
+#client.placeholder $gold $gold $black $qold #Bugged?
+
+
+#Startup req
+exec xset dpms 0 0 0 
+exec xset dpms s off
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/bin/numlockx on
+exec --no-startup-id feh --bg-scale ~/Pictures/ironman.jpeg
+exec volumeicon #Fails
+exec --no-startup-id thuderbird
