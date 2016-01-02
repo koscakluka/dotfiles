@@ -1,0 +1,50 @@
+rename 
+rename Fight Club [1999] - 10th Anniversary Edition.srt
+delete 
+h
+shell mkdir Rocky 2 [197x]
+rename Rocky 2 [1979]
+rename Rocky 2 [1979].mkv
+rename Rocky 2 [1979].srt
+rename Rocky II [1979]
+rename Rocky II [1979].mp4
+rename Rocky II [1979].srt
+shell 
+open_with 
+shell mkdir 4
+shell touch prosti.cpp
+shell touch faktor.cpp
+shell touch kabonacci.cpp
+rename prosti2.cpp
+shell mkdir ispit
+shell mkdir mi2014\/2015
+shell mkdir mi14-15
+shell cd
+shell sudo chmod 666 Elektronika\ 1\ -\ Butkovic,\ Divkovic,\ Baric\ -\ Skripta\ -\ 2.\ ciklus.pdf
+shell chmod 664 Elektronika\ 1\ -\ Butkovic,\ Divkovic,\ Baric\ -\ Skripta\ -\ 2.\ ciklus.pdf
+cd 
+hghjk
+shell touch 2015-12-11-01.txt
+shell touch 2015-12-15-01.txt
+rename .diary
+rename RETURN_OF_THE_JEDI_1983.en.sub
+rename RETURN_OF_THE_JEDI_1983.sub.en
+rename RETURN_OF_THE_JEDI_1983.sub.wtf
+rename RETURN_OF_THE_JEDI_1983.sub
+rename RETURN_OF_THE_JEDI_1983.en.srt
+rename RETURN_OF_THE_JEDI_1983.srt
+shell touch 2015-12-16-01.txt
+shell mkdir zadaci
+shell touch foton.cpp
+touch foton.sage
+open_with firefox
+open_with vim
+shell touch 2015-12-18-01.txt
+touch 2015-12-25-01.txt
+touch 2015-12-26-01.txt
+shell mkdir 2016-01
+shell touch 2016-01-01-01.txt
+delete
+rename Rocky Balboa [2006]
+
+rename Limitless [2011]
